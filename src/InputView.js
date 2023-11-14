@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { menuBoard } from "./menuBoard";
+import { menuBoard } from "./Constants/menuBoard";
+import { menuCategories } from "./Constants/menuBoard";
 
 const InputView = {
     async readDate() {
@@ -17,9 +18,9 @@ const InputView = {
         const menuSet = new Set(menuNames);
         const invalidMenuCount = menuCounts.some(count => isNaN(count) || count < 1);
         const invalidMenuName = menuNames.some(name => !Object.keys(menuBoard).includes(name));
+        const isOnlyDrink = menuNames.every(name => menuCategories['음료'].includes(name));
 
-        if (menuNames.length !== menuSet.size || invalidMenuCount || invalidMenuName) 
-            throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+        if (menuNames.length !== menuSet.size || invalidMenuCount || invalidMenuName || isOnlyDrink)  throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
 
         return menus;
     }

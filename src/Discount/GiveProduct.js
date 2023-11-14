@@ -1,7 +1,11 @@
+import { GIFTS } from "../Constants/checkChampagne";
+
 export function GiveProduct(totalPrice){
-    let product = '없음';
+    let product = GIFTS.NONE;
+    let productPrice = 0;
     if(totalPrice >= 120000){
-        product = '샴페인 1개';
+        product = GIFTS.CHAMPAGNE;
+        productPrice = 25000;
     }
-    return product;
+    return {product ,productPrice};
 }
