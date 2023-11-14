@@ -15,9 +15,9 @@ describe("할인 테스트", () => {
 
   test("주중 할인 테스트", () => {
 
-    const menus = [[`${menuCategories.메인[0]}`, 2], [`${menuCategories.메인[1]}`, 3], [`${menuCategories.메인[2]}`, 4]];
-    expect(WeekendDiscount(holidays[1], menus)).toEqual({weekdayDiscount: 0, holidayDiscount: 0});
-    expect(WeekendDiscount(holidays[2]+3, menus)).toEqual({weekdayDiscount: 6069, holidayDiscount: 0});
+    const menus = [[`${menuCategories.메인[0]}`, 2], [`${menuCategories.디저트[0]}`, 3], [`${menuCategories.애피타이저[0]}`, 4]];
+    expect(WeekendDiscount(holidays[1], menus)).toEqual({weekdayDiscount: 0, holidayDiscount: 4046});
+    expect(WeekendDiscount(holidays[1]+2, menus)).toEqual({weekdayDiscount: 6069, holidayDiscount: 0});
   });
 
   test("증정 항목 테스트", () => {
