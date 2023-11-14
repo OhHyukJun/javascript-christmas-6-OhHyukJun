@@ -1,6 +1,6 @@
 import { menuBoard } from "./Constants/menuBoard";
 
-export function calculateTotalPrice(menus) {
+export function CalculateTotalPrice(menus) {
   let totalPrice = 0;
   menus.forEach(menu => {
     const menuName = menu[0];
