@@ -2,10 +2,9 @@ import InputView from "./InputView";
 import OutputView from "./OutputView";
 import { calculateTotalPrice } from "./CalculateTotal";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { DailyDiscount } from "./Discount/DailyDiscount";
-import { WeekendDiscount } from "./Discount/WeekendDiscount";
 import { GiveProduct } from "./Discount/GiveProduct";
-import { SpecialDiscount } from "./Discount/SpecialDiscount";
+import { calculateTotalDiscount } from "./Discount/TotalDiscount";
+import { printDiscounts } from "./Discount/PrintDiscount";
 
 class App {
   constructor() {
@@ -22,12 +21,16 @@ class App {
 
       const totalPrice = calculateTotalPrice(menus);
       MissionUtils.Console.print(`<할인 전 총주문 금액>\n${totalPrice}원`);
+
       const giveProduct = GiveProduct(totalPrice);
-      MissionUtils.Console.print(`<증정 메뉴>\n ${giveProduct}`);
-      const dailyDiscount = DailyDiscount(date);
-      const weekendDiscount = WeekendDiscount(date, menus);
-      const specialDiscount = SpecialDiscount(date);
-      MissionUtils.Console.print(` ${dailyDiscount} ${weekendDiscount.weekdayDiscount} ${weekendDiscount.holidayDiscount} ${specialDiscount}`);
+      MissionUtils.Console.print(`<증정 메뉴>\n${giveProduct.product}`);
+
+      //const printDiscount = printDiscounts(date,menus)
+      //MissionUtils.Console.print(`<혜택 내역>\n${printDiscount}`);
+
+      const afterPrice = calculateTotalDiscount(date, menus);
+      MissionUtils.Console.print(`<총혜택 금액>\n${afterPrice.totalBenifit}원`);
+      MissionUtils.Console.print(`<할인 후 예상 결제 금액>\n${afterPrice.afterPrice}원`);
     } catch (error) {
       if (error.message.startsWith("[ERROR]")) {
         this.run(); 
