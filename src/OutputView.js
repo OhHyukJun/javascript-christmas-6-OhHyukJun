@@ -1,6 +1,10 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const OutputView = {
+    printDate(date) {
+        MissionUtils.Console.print(`${date}`);
+    },
+
     printMenu(menus) {
         MissionUtils.Console.print("<주문 메뉴>");
         menus.forEach(menu => {
