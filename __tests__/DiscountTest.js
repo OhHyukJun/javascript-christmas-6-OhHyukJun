@@ -1,3 +1,4 @@
+import { CalculateTotalDiscount } from "../src/Discount/TotalDiscount";
 import { DailyDiscount } from "../src/Discount/DailyDiscount";
 import { SpecialDiscount } from "../src/Discount/SpecialDiscount";
 import { GiveProduct } from "../src/Discount/GiveProduct";
@@ -28,5 +29,14 @@ describe("할인 테스트", () => {
   test("특별 할인 테스트", () => {
     expect(SpecialDiscount(specialDays[0])).toEqual(1000);
     expect(SpecialDiscount(specialDays[0]+1)).toEqual(0);
+  });
+
+  test("totalPrice가 10000보다 작을 때 테스트", () => {
+    const date = 24; 
+    const menus = [[`${menuCategories.애피타이저[1]}`, 1], [`${menuCategories.음료[0]}`, 1]];
+    const result = CalculateTotalDiscount(date, menus);
+    
+    expect(result.afterPrice).toEqual(8500); 
+    expect(result.totalBenifit).toEqual(0); 
   });
 });
