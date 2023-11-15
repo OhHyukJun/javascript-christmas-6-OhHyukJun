@@ -32,8 +32,7 @@ class App {
       
     } catch (error) {
       if (error.message.startsWith("[ERROR]")) {
-        MissionUtils.Console.print(error.message);
-        //this.run(); 
+        MissionUtils.Console.print(error.message); 
       } else {
         throw error;  
       }
