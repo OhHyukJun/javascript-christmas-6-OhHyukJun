@@ -23,6 +23,7 @@ class App {
       const afterPrice = CalculateTotalDiscount(date, menus);
       const christmasBadge = ChristmasBadge(afterPrice);
 
+      this.outputView.printDate(date);
       this.outputView.printMenu(menus);
       this.outputView.printTotalPrice(totalPrice);
       this.outputView.printGiveProduct(giveProduct);
