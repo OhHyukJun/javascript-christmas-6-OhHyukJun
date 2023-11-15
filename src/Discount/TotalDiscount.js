@@ -10,10 +10,14 @@ export function CalculateTotalDiscount(date, menus) {
     const specialDiscount = SpecialDiscount(date);
     const totalPrice = CalculateTotalPrice(menus);
     const givePrice = GiveProduct(totalPrice);
-    const totalDiscount = dailyDiscount + weekendDiscounts.weekdayDiscount + weekendDiscounts.holidayDiscount + specialDiscount;
+    
+    let totalBenifit=0;
+    let afterPrice = totalPrice;
+    if(totalPrice >= 10000){
+        const totalDiscount = dailyDiscount + weekendDiscounts.weekdayDiscount + weekendDiscounts.holidayDiscount + specialDiscount;
 
-    const totalBenifit = totalDiscount + givePrice.productPrice;
-    const afterPrice = totalPrice - totalDiscount;
-
+        totalBenifit = totalDiscount + givePrice.productPrice;
+        afterPrice = totalPrice - totalDiscount;
+    }
     return {afterPrice,totalBenifit};
 }
